@@ -4,18 +4,18 @@ var Cylon = require("cylon");
 
 Cylon.robot({
   connections: {
-    muse: { adaptor: "muse", port: "/dev/rfcomm0"  }
+    muse: { adaptor: "muse", port: "/dev/rfcomm0" }
   },
 
   devices: {
-    headset: { driver: "muse"  }
+    headset: { driver: "muse" }
   },
 
   work: function(my) {
-    my.muse.on("read", function(packet) {
+    my.muse.read(function(packet) {
       console.log("packet:", packet);
     });
-    my.muse.write("v");
+    my.muse.write("v\n");
   }
 });
 
